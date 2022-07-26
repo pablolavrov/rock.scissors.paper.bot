@@ -23,10 +23,10 @@ def privetsvie(message): #приветсвие
 def pokinul_boi(message):
             if users[message.chat.first_name][2] != "None":
                 opponent_name = users[message.chat.first_name][2]
+                users[message.chat.first_name][2] = "None"
                 if opponent_name != "🤖ValeraBot🤖":
                     text = message.chat.first_name + " покинул бой"
                     users[opponent_name][2] = "None"
-                    users[message.chat.first_name][2] = "None"
                     bot.send_message(users[opponent_name][0], text, reply_markup=buttons.markup_1)
 
 
