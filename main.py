@@ -59,10 +59,12 @@ def callback_inline(call):
     if call.data == 'fightwith':
         if call.message.json["chat"]['first_name'] in users:
             if call.message.json["text"] == "🤖ValeraBot🤖":
-                bot.send_message(call.from_user.id, "Он принимает бой, погнали!", reply_markup=buttons.markup_3)
+                bot.send_message(call.from_user.id,
+                                 "Он принимает бой, погнали!", reply_markup=buttons.markup_3)
                 users[call.message.json["chat"]['first_name']][2] = "🤖ValeraBot🤖"
 
-            elif users[call.message.json["text"]][2] == "None":
+            elif users[call.message.json["text"]][2] == "None" or \
+                    users[call.message.json["text"]][2] == "🤖ValeraBot🤖":
                 fight_await = "Ты вызвал на бой " + call.message.json["text"]
                 bot.send_message(call.from_user.id, fight_await)
                 time.sleep(0.5)
@@ -72,7 +74,7 @@ def callback_inline(call):
                 bot.send_message(users[User2][0], fight_request, reply_markup=buttons.markup_4)
 
             elif users[call.message.json["text"]][2] != "None":
-                bot.send_message(call.from_user.id, "Он уже бьется, вызови другого!")
+                bot.send_message(call.from_user.id, "Он уже бьется, вызови другого!", reply_markup=buttons.markup_1)
 
         else:
             bot.send_message(call.from_user.id, "Сначала надо приземлиться, жми /start бродяга!")
@@ -102,7 +104,7 @@ def callback_inline(call):
             if call.data == "fightNO":
                 time.sleep(0.5)
                 bot.send_message(call.from_user.id, "😼Ну и не надо😼")
-                bot.send_message(users[User1][0], "🐣Он струсил, вызови другого🐣")
+                bot.send_message(users[opponent_name][0], "🐣Он струсил, вызови другого🐣")
         else:
             bot.send_message(call.from_user.id, "Сначала надо приземлиться, жми /start бродяга!")
 

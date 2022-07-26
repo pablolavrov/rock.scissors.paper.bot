@@ -68,4 +68,3 @@ def rsp_game(message):
 
         bot.send_message(users[User1_name][0], "Еще разок?", reply_markup=buttons.markup_3)
         bot.send_message(users[User2_name][0], "Еще разок?", reply_markup=buttons.markup_3)
-
