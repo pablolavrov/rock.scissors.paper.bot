@@ -20,24 +20,14 @@ def centr_mes(message):
         if message.chat.first_name in users: #проверка что игрок, есть в нашем словаре игроков
             bot.send_message(message.chat.id, "Ты смотришь по сторонам и видишь следующих игроков",
                              reply_markup=buttons.markup_1)
-            if users[message.chat.first_name][2] != "None":
-                opponent_name = users[message.chat.first_name][2]
-                text = message.chat.first_name + " покинул бой"
-                users[opponent_name][2] = "None"
-                users[message.chat.first_name][2] = "None"
-                bot.send_message(users[opponent_name][0], text, reply_markup=buttons.markup_1)
+            functions.pokinul_boi(message)
             for user in users:
                 if message.chat.first_name != user:
                     bot.send_message(message.chat.id, user, reply_markup=buttons.markup_2)
         else:
             bot.send_message(message.chat.id, "Сначала надо приземлиться, жми /start бродяга!")
     elif message.text == "🚪Выход🚪":
-        if users[message.chat.first_name][2] != "None":
-            opponent_name = users[message.chat.first_name][2]
-            text = message.chat.first_name + " покинул бой"
-            users[opponent_name][2] = "None"
-            users[message.chat.first_name][2] = "None"
-            bot.send_message(users[opponent_name][0], text, reply_markup=buttons.markup_1)
+        functions.pokinul_boi(message)
         bot.send_message(message.chat.id, "🚀Ты улетел восвояси, теперь никто не доберется до тебя.🚀")
         remove = telebot.types.ReplyKeyboardRemove()
         bot.send_message(message.chat.id, "Чтобы телепортироваться обратно, нажми нажми /start", reply_markup=remove)

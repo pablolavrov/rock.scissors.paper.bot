@@ -20,6 +20,16 @@ def privetsvie(message): #приветсвие
     bot.send_message(message.chat.id, "Также всегда есть робот Валера🤖", reply_markup=buttons.markup_1)
 
 
+def pokinul_boi(message):
+            if users[message.chat.first_name][2] != "None":
+                opponent_name = users[message.chat.first_name][2]
+                if opponent_name != "🤖ValeraBot🤖":
+                    text = message.chat.first_name + " покинул бой"
+                    users[opponent_name][2] = "None"
+                    users[message.chat.first_name][2] = "None"
+                    bot.send_message(users[opponent_name][0], text, reply_markup=buttons.markup_1)
+
+
 def game_func(User1_choise, User2_choise):
     if User1_choise == User2_choise:
         return "🤝Ничья!🤝"
