@@ -14,14 +14,13 @@ fightbut = types.InlineKeyboardButton(text="Вызвать на бой", callbac
 markup_2.add(fightbut)
 
 #кнопки игры
-def gameBut(game_adr_name):
-    RockBut = types.InlineKeyboardButton(text="Камень👊", callback_data=("Rock " + str(game_adr_name)), one_time_keyboard=True)
-    ScisBut = types.InlineKeyboardButton(text="Ножницы✌", callback_data=("Scissors " + str(game_adr_name)), one_time_keyboard=True)
-    PapeBut = types.InlineKeyboardButton(text="Бумага✋", callback_data=("Paper " + str(game_adr_name)), one_time_keyboard=True)
-    markup_3 = types.InlineKeyboardMarkup()
-    markup_3.row_width = 3
-    markup_3.add(RockBut, ScisBut, PapeBut)
-    return markup_3
+RockBut = types.KeyboardButton("👊Камень👊")
+ScisBut = types.KeyboardButton("✌Ножницы✌")
+PapeBut = types.KeyboardButton("✋Бумага✋")
+markup_3 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+markup_3.row_width = 3
+markup_3.add(RockBut, ScisBut, PapeBut, LookBut, ExitBut)
+markup_3
 
 #кнопка "принимаешь бой"
 markup_4 = types.InlineKeyboardMarkup()
